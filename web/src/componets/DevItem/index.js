@@ -1,14 +1,10 @@
 import React from 'react';
-import api from '../../services/api';
+//import api from '../../services/api';
 
 
 import './styles.css';
 
-function DevItem({dev}) {
-
-  async function handleRemove (github_username) {
-      api.delete('/devs', github_username);
-  }
+const DevItem = ({onDelete, dev}) => { 
 
   return (
     <li className="dev-item">
@@ -21,7 +17,11 @@ function DevItem({dev}) {
       </header>
       <p>{dev.bio}</p>
       <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no Github</a>
-      <button type="button" onClick={() => handleRemove()}>Remover</button>
+      <button
+        onClick={onDelete}
+      >
+        Remover
+      </button>
     </li>
   )  
 }

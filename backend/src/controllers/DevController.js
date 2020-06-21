@@ -65,20 +65,20 @@ module.exports = {
   async destroy (request, response) {
     //Recebe os dados da requisição
     //const github_username = request.body._id;
-    const github_username = request.body.github_username;
+    const id = request.query;
 
-    console.log(github_username);
+    console.log(id);
 
     //Se houver algum Dev com este username na coleção
     //let dev = await Dev.findById({_id});
-    let dev = await Dev.findOne({github_username});
-    if (!dev) {response.json({github_username})} else {
+    //let dev = await Dev.findOne({github_username});
+    //if (!dev) {response.json({github_username})} else {
       //Então exclui
       //const dev = await Dev.findByIdAndDelete({_id});
-      dev = await Dev.findOneAndDelete({github_username});
-      if (!dev)  {response.json({message: "Erro ao excluir"})} else {response.json({message: "Excluído com sucesso!"})};
-    }
-    return response.json(dev);    
+      //dev = await Dev.findOneAndDelete({github_username});
+      //if (!dev)  {response.json({message: "Erro ao excluir"})} else {response.json({message: "Excluído com sucesso!"})};
+    //}
+    return response.json(id);    
   }
 
 }

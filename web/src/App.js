@@ -28,6 +28,23 @@ function App() {
     setDevs([...devs, response.data]);
   }
 
+  async function handleDelete (dev) {
+    const devsCopy = Array.from(devs);
+    //const index = devsCopy.indexOf(id);
+    /* devsCopy.splice(id, 1);
+    setDevs(devsCopy);*/
+    for (var i = devsCopy.length - 1; i >=0; i--) {
+      if (devsCopy[i] === dev) {
+        devsCopy.splice(i, 1);
+      }
+    }
+    setDevs(devsCopy);
+    api.delete(`/devs/${dev._id}`);
+    //console.log('Index: ' + index);
+    //console.log('Tamanho do array: ' + devsCopy.length);
+    console.log('Id: ' + dev._id);
+  }
+
   //Pesquisar sobre API de contexto
   //Criar possibilidades para editar e excluir o dev
   return (
@@ -39,7 +56,11 @@ function App() {
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev}/>            
+            <DevItem
+              key={dev._id}
+              dev={dev}
+              onDelete={() => handleDelete(dev)}
+            />
           ))}          
         </ul>
 
