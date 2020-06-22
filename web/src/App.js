@@ -39,10 +39,11 @@ function App() {
       }
     }
     setDevs(devsCopy);
-    api.delete(`/devs/${dev._id}`);
+    console.log('Id: ' + dev._id);
+    await api.delete(`/devs/${dev._id}`);
     //console.log('Index: ' + index);
     //console.log('Tamanho do array: ' + devsCopy.length);
-    console.log('Id: ' + dev._id);
+    
   }
 
   //Pesquisar sobre API de contexto
