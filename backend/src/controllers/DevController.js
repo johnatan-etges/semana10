@@ -64,7 +64,7 @@ module.exports = {
 
   //Rota de exclusão
   async destroy (request, response) {       
-    const id = request.params.id;
+    const {id} = request.params;
 
     try {
       console.log(id);
