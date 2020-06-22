@@ -1,6 +1,7 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
 const parseStringAsArray = require('../utils/ParseStringAsArray');
+const mongoose = require('mongoose');
 
 module.exports = {
   //Rota de inserção (create)
@@ -62,23 +63,18 @@ module.exports = {
   },
 
   //Rota de exclusão
-  async destroy (request, response) {
-    //Recebe os dados da requisição
-    //const github_username = request.body._id;
-    const id = request.query;
+  async destroy (request, response) {       
+    const id = request.params.id;
 
-    console.log(id);
+    try {
+      console.log(id);
+      let dev = await Dev.findByIdAndRemove(id, {useFindAndModify: false});      
+      response.json(dev);
+    } catch(e) {      
+      response.json({Erro: e});
+    }
 
-    //Se houver algum Dev com este username na coleção
-    //let dev = await Dev.findById({_id});
-    //let dev = await Dev.findOne({github_username});
-    //if (!dev) {response.json({github_username})} else {
-      //Então exclui
-      //const dev = await Dev.findByIdAndDelete({_id});
-      //dev = await Dev.findOneAndDelete({github_username});
-      //if (!dev)  {response.json({message: "Erro ao excluir"})} else {response.json({message: "Excluído com sucesso!"})};
-    //}
-    return response.json(id);    
+    return response;
   }
 
 }

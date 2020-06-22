@@ -30,20 +30,22 @@ function App() {
 
   async function handleDelete (dev) {
     const devsCopy = Array.from(devs);
-    //const index = devsCopy.indexOf(id);
-    /* devsCopy.splice(id, 1);
-    setDevs(devsCopy);*/
-    for (var i = devsCopy.length - 1; i >=0; i--) {
-      if (devsCopy[i] === dev) {
-        devsCopy.splice(i, 1);
-      }
-    }
-    setDevs(devsCopy);
-    console.log('Id: ' + dev._id);
-    await api.delete(`/devs/${dev._id}`);
-    //console.log('Index: ' + index);
-    //console.log('Tamanho do array: ' + devsCopy.length);
+
+    try {
     
+      if (await api.delete(`/devs/${dev._id}`)) {
+
+        for (var i = devsCopy.length - 1; i >=0; i--) {
+          if (devsCopy[i] === dev) {
+            devsCopy.splice(i, 1);
+          }
+        }
+        setDevs(devsCopy);
+
+      }
+    } catch (e) {
+      console.log("Error: " + e);
+    }
   }
 
   //Pesquisar sobre API de contexto
