@@ -24,8 +24,10 @@ function App() {
 
   async function handleAddDev(data) {   
     const response = await api.post('/devs', data);
-
+    console.log(data);
     setDevs([...devs, response.data]);
+
+    console.log(devs);
   }
 
   async function handleDelete (dev) {
@@ -48,6 +50,10 @@ function App() {
     }
   }
 
+  async function handleUpdate() {
+    /*TODO*/
+  }
+
   //Pesquisar sobre API de contexto
   //Criar possibilidades para editar e excluir o dev
   return (
@@ -63,6 +69,7 @@ function App() {
               key={dev._id}
               dev={dev}
               onDelete={() => handleDelete(dev)}
+              onchange={() => handleUpdate()}
             />
           ))}          
         </ul>

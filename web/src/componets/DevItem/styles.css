@@ -17,10 +17,6 @@ li.dev-item header img {
   border-radius: 50%;
 }
 
-li.dev-item header button {
-  
-}
-
 li.dev-item header .user-info {
   margin-left: 10px;
 }
@@ -52,4 +48,22 @@ li.dev-item a {
 
 li.dev-item a:hover {
   color: #5a2ea6;
+}
+
+li.dev-item .options{
+  padding-top: 10px;
+  align-items: flex;
+}
+
+li.dev-item button {
+  background-color: #5a2ea6; /* Green */
+  font-family: Roboto, sans-serif;
+  font-weight: lighter;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 16px;
 }
